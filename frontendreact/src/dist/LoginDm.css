@@ -1,0 +1,63 @@
+body{ background-image:url("https://tved-prod.adobecqms.net/content/dam/editorialTelevisa/mexico/natgeo/mx/traveler/gastronomia/17/01/9/chocolatem3.jpg.imgo.jpg"); background-repeat:repeat-y; background-position:center; background-size:100%; padding:10px;}
+
+.form-headin { color:#fd9800; font-size:23px;text-decoration: underline;  }
+
+
+.form-headin2 { color:#f1f1ee;}
+
+
+
+.main-div {
+  background: #e9cd91 none repeat scroll 0 0;
+  border-radius: 2px;
+  margin: 10px auto 30px;
+  align-items: center;
+  max-width: 38%;
+  padding: 50px 70px 70px 71px;
+}
+
+.login-form .form-group {
+  margin-bottom:10px;
+}
+.login-form{ text-align:center;}
+
+
+.login-form  .btn.btn-primary {
+  background: #fa860298;
+  border-color: #777777;
+  color: beige;
+  font-size: 14px;
+  width: 20%;
+  margin-top: 10px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+}
+
+.colorBotton {
+  background: #fa860298;
+  border-color: #fa860298;
+}
+
+.title {
+  color:#fd9800; font-size:40px;text-decoration: underline;
+}
+
+.subtitle{
+  font-size:30px; text-align: left;
+}
+
+
+.titleFinsh {
+  font-size:60px;;
+}
+
+.colorWhite{
+  color: #fafafa;
+}
+
+.wrapper {
+  overflow: hidden;
+  display: inherit;
+  
+}
