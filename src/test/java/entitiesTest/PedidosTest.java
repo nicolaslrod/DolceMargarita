@@ -1,9 +1,9 @@
-package icTest;
+package entitiesTest;
 
-import Pedido.Pedido;
-import chocolates.Chocolate;
-import chocolates.Forma;
-import chocolates.TipoChocolate;
+import backend.entities.Pedido;
+import backend.entities.chocolates.Chocolate;
+import backend.entities.chocolates.Forma;
+import backend.entities.chocolates.TipoChocolate;
 import org.junit.Before;
 import org.junit.Test;
 
