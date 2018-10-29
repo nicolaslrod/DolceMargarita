@@ -1,6 +1,6 @@
-package Pedido;
+package backend.entities;
 
-import chocolates.Chocolate;
+import backend.entities.chocolates.Chocolate;
 
 import java.util.ArrayList;
 import java.util.List;

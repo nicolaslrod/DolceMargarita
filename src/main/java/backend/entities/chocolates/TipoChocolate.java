@@ -1,4 +1,4 @@
-package chocolates;
+package backend.entities.chocolates;
 
 public enum TipoChocolate {
 

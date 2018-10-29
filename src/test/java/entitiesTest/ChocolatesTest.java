@@ -1,13 +1,11 @@
-package icTest;
+package entitiesTest;
 
-import chocolates.Chocolate;
-import chocolates.Forma;
-import chocolates.TipoChocolate;
+import backend.entities.chocolates.Chocolate;
 import org.junit.Before;
 import org.junit.Test;
 
-import static chocolates.Forma.HUEVO;
-import static chocolates.TipoChocolate.BLANCO;
+import static backend.entities.chocolates.Forma.HUEVO;
+import static backend.entities.chocolates.TipoChocolate.BLANCO;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,7 +15,7 @@ public class ChocolatesTest {
 
     @Before
     public void setUp(){
-        choco = new Chocolate(HUEVO, BLANCO,100);;
+        choco = new Chocolate(HUEVO, BLANCO,100);
     }
 
     @Test

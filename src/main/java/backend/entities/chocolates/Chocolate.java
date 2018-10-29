@@ -1,15 +1,28 @@
-package chocolates;
+package backend.entities.chocolates;
 
+import javax.persistence.*;
+
+@Entity
 public class Chocolate {
 
+    @Id
+    private String nombre;
+
+    @Enumerated(value = EnumType.STRING)
     private Forma forma;
+
+    @Enumerated(value = EnumType.STRING)
     private TipoChocolate colorChocolate;
+
     private Integer pesoGramos;
 
-    public Chocolate(Forma unaForma, TipoChocolate unColor, Integer unPeso){
+    public Chocolate(){}
+
+    public Chocolate(Forma unaForma, TipoChocolate unTipo, Integer unPeso){
         this.forma = unaForma;
-        this.colorChocolate = unColor;
+        this.colorChocolate = unTipo;
         this.pesoGramos = unPeso;
+        this.nombre = unaForma.toString() + unTipo.toString();
     }
 
     public Forma forma() {
@@ -27,5 +40,9 @@ public class Chocolate {
     public Double precio() {
         //TODO: PREGUNTAR
         return this.pesoGramos * 0.5;
+    }
+
+    public String getNombre() {
+        return this.nombre;
     }
 }
