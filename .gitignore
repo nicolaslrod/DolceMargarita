@@ -1,5 +1,6 @@
 # dependencies
 frontendreact/node_modules
+frontendreact/package-lock.json
 
 # testing
 /coverage
@@ -45,5 +46,5 @@ hs_err_pid*
 
 .idea
 
-frontendreact\package-lock.json
+
 
