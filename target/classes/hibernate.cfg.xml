@@ -22,6 +22,7 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <mapping class="backend.entities.chocolates.Chocolate" />
+        <mapping class="backend.entities.Pedido" />
 
     </session-factory>
 </hibernate-configuration>
