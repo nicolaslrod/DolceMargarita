@@ -1,6 +1,7 @@
 package server;
 
 import backend.entities.chocolates.Chocolate;
+import backend.service.ServiceChocolate;
 import org.uqbar.xtrest.api.Result;
 import org.uqbar.xtrest.api.annotation.Body;
 import org.uqbar.xtrest.api.annotation.Get;
@@ -24,11 +25,13 @@ import static org.uqbar.xtrest.result.ResultFactory.ok;
 
 public class Server extends ResultFactory{
 
+    private ServiceChocolate servicioDeChocolates;
     private JSONUtils JSONUtils;
 
 
-    public Server() {
-        JSONUtils = new JSONUtils();
+    public Server(ServiceChocolate servicioDeChocolates) {
+        this.JSONUtils = new JSONUtils();
+        this.servicioDeChocolates = servicioDeChocolates;
 
     }
 
@@ -37,7 +40,7 @@ public class Server extends ResultFactory{
                              final HttpServletRequest request, final HttpServletResponse response) {
         response.setContentType(ContentType.APPLICATION_JSON);
 
-        List<Chocolate> data = new ArrayList<>();
+        List<Chocolate> data = this.servicioDeChocolates.getChocolates();
 
         return ResultFactory.ok(this.JSONUtils.toJson(data));
     }
