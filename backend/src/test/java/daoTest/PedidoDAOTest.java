@@ -1,6 +1,7 @@
 package daoTest;
 
 import backend.dao.PedidoDAO;
+import backend.entities.Cliente;
 import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
 import backend.entities.chocolates.TipoChocolate;
@@ -19,10 +20,12 @@ import static org.junit.Assert.assertEquals;
 
 public class PedidoDAOTest {
 
-    private Pedido pedido;
+    private Pedido pedido1;
+    private Pedido pedido2;
     private Chocolate chocolateBlanco;
     private Chocolate chocolateConLeche;
     private PedidoDAO pedidoDAO;
+    private Cliente marge;
 
 //    @After
 //    public void cleanUp(){
@@ -33,9 +36,13 @@ public class PedidoDAOTest {
     public void setUp(){
         chocolateBlanco = new Chocolate(HUEVO, BLANCO,100);
         chocolateConLeche = new Chocolate(HUEVO, TipoChocolate.CONLECHE,100);
-        pedido = new Pedido();
-        pedido.agregarChocolate(chocolateBlanco);
-        pedido.agregarChocolate(chocolateConLeche);
+
+        marge = new Cliente(203656838, "Marge Simpson", 123434141, "Avenida siempreviva 742", "marge@gmail.com");
+        pedido1 = new Pedido(marge);
+        pedido1.agregarChocolate(chocolateConLeche);
+
+        pedido2 = new Pedido(marge);
+        pedido2.agregarChocolate(chocolateBlanco);
         pedidoDAO = new PedidoDAO();
     }
 
@@ -43,11 +50,28 @@ public class PedidoDAOTest {
     public void recuperoUnChocolateBlanco(){
         Runner.runInSession(() -> {
 
-            pedidoDAO.guardar(pedido);
+            pedidoDAO.guardar(pedido1);
 
-            Pedido pedidoRecuperado = pedidoDAO.recuperar(pedido.getId());
+            Pedido pedidoRecuperado = pedidoDAO.recuperar(pedido1.getId());
 
-            assertEquals(pedidoRecuperado.getChocolates().size(), pedido.getChocolates().size());
+            assertEquals(pedidoRecuperado.getChocolates().size(), pedido1.getChocolates().size());
+
+            return null;
+        });
+    }
+
+    @Test
+    public void veoTodosLosPedidosDeUnCliente(){
+        Runner.runInSession(() -> {
+
+            pedidoDAO.guardar(pedido1);
+            pedidoDAO.guardar(pedido2);
+
+            List<Pedido> pedidosMarge = pedidoDAO.getPedidosDeCliente(marge.getDni());
+
+            assertEquals(2, pedidosMarge.size());
+            assertEquals(pedidosMarge.get(0).getDNICliente(), marge.getDni());
+            assertEquals(pedidosMarge.get(1).getDNICliente(), marge.getDni());
 
             return null;
         });
