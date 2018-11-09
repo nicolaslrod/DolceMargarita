@@ -2,6 +2,7 @@
 # dependencies
 frontendreact/node_modules
 frontendreact/package-lock.json
+Cbackend/target/classes/hibernate.cfg.xml
 
 # testing
 /coverage
