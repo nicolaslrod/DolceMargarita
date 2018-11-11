@@ -2,6 +2,7 @@ package backend.service;
 
 import backend.dao.ChocolateDAO;
 import backend.dao.PedidoDAO;
+import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
 import backend.runner.Runner;
 
@@ -21,6 +22,14 @@ public class ServiceChocolate {
         return Runner.runInSession(() -> {
 
             return this.daoChocolate.getChocolates();
+        });
+    }
+
+    public void addPedido(Pedido pedido){
+        Runner.runInSession(() -> {
+            this.daoPedido.guardar(pedido);
+
+            return null;
         });
     }
 
