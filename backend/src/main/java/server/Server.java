@@ -45,6 +45,16 @@ public class Server extends ResultFactory{
         return ResultFactory.ok(this.JSONUtils.toJson(data));
     }
 
+    @Post("/pedidos")
+    public Result agregarPedido(final String target, final Request baseRequest,
+                                final HttpServletRequest request, final HttpServletResponse response) {
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        List<Chocolate> data = this.servicioDeChocolates.getChocolates();
+
+        return ResultFactory.ok(this.JSONUtils.toJson(data));
+    }
+
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Matcher matcher =
