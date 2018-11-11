@@ -23,6 +23,14 @@ public class Pedido {
     @Column
     private Integer dniClientePedido;
 
+    public Pedido(){
+
+    }
+    public Pedido(Integer dni){
+        this.chocolates = new ArrayList<>();
+        this.dniClientePedido = dni;
+    }
+
     public Pedido(Cliente cliente){
         this.chocolates = new ArrayList<>();
         this.dniClientePedido = cliente.getDni();
