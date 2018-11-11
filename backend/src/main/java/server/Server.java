@@ -1,5 +1,6 @@
 package server;
 
+import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
 import backend.service.ServiceChocolate;
 import org.uqbar.xtrest.api.Result;
@@ -23,7 +24,7 @@ import java.util.regex.Pattern;
 
 import static org.uqbar.xtrest.result.ResultFactory.ok;
 
-public class Server extends ResultFactory{
+public class Server extends ResultFactory {
 
     private ServiceChocolate servicioDeChocolates;
     private JSONUtils JSONUtils;
@@ -37,16 +38,6 @@ public class Server extends ResultFactory{
 
     @Get("/chocolates")
     public Result getChocolates(final String target, final Request baseRequest,
-                             final HttpServletRequest request, final HttpServletResponse response) {
-        response.setContentType(ContentType.APPLICATION_JSON);
-
-        List<Chocolate> data = this.servicioDeChocolates.getChocolates();
-
-        return ResultFactory.ok(this.JSONUtils.toJson(data));
-    }
-
-    @Post("/pedidos")
-    public Result agregarPedido(final String target, final Request baseRequest,
                                 final HttpServletRequest request, final HttpServletResponse response) {
         response.setContentType(ContentType.APPLICATION_JSON);
 
@@ -55,24 +46,65 @@ public class Server extends ResultFactory{
         return ResultFactory.ok(this.JSONUtils.toJson(data));
     }
 
+    @Post("/pedidos")
+    public Result agregarPedido(@Body final String body, final String target, final Request baseRequest,
+                                final HttpServletRequest request, final HttpServletResponse response) {
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        try {
+            Integer dni = JSONUtils.getPropertyAsInteger(body,"dniCliente");
+            Pedido nuevoPedido = new Pedido(dni);
+            this.servicioDeChocolates.addPedido(nuevoPedido);
+            return ResultFactory.ok();
+        } catch (Exception e) {
+            return ResultFactory.badRequest(e.getMessage());
+        }
+
+    }
+
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Matcher matcher =
-                Pattern.compile("/chocolates").matcher(target);
-        if (request.getMethod().equalsIgnoreCase("Get") && matcher.matches()) {
-            // take parameters from request
+        {
+            Matcher matcher =
+                    Pattern.compile("/chocolates").matcher(target);
 
-            // take variables from url
+            if (request.getMethod().equalsIgnoreCase("Get") && matcher.matches()) {
+                // take parameters from request
 
-            // set default content type (it can be overridden during next call)
-            response.setContentType("application/json");
+                // take variables from url
 
-            Result result = getChocolates(target, baseRequest, request, response);
-            result.process(response);
+                // set default content type (it can be overridden during next call)
+                response.setContentType("application/json");
 
-            response.addHeader("Access-Control-Allow-Origin", "*");
-            baseRequest.setHandled(true);
-            return;
+                Result result = getChocolates(target, baseRequest, request, response);
+                result.process(response);
+
+                response.addHeader("Access-Control-Allow-Origin", "*");
+                baseRequest.setHandled(true);
+                return;
+            }
         }
+        {
+            Matcher matcher =
+                    Pattern.compile("/pedidos").matcher(target);
+            if (request.getMethod().equalsIgnoreCase("Post") && matcher.matches()) {
+                // take parameters from request
+                String body = readBodyAsString(request);
+
+                // take variables from url
+
+                // set default content type (it can be overridden during next call)
+                response.setContentType("application/json");
+
+                Result result = agregarPedido(body, target, baseRequest, request, response);
+                result.process(response);
+
+                response.addHeader("Access-Control-Allow-Origin", "*");
+                baseRequest.setHandled(true);
+                return;
+            }
+        }
+
+
     }
 }
