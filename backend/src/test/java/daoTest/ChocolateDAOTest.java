@@ -17,10 +17,10 @@ public class ChocolateDAOTest {
     Chocolate chocolateBlanco;
     ChocolateDAO chocolateDAO;
 
-//    @After
-//    public void cleanUp(){
-//        SessionFactoryProvider.destroy();
-//    }
+    @After
+    public void cleanUp(){
+        SessionFactoryProvider.destroy();
+    }
 
     @Before
     public void setUp(){
