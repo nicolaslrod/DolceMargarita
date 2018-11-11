@@ -27,10 +27,10 @@ public class PedidoDAOTest {
     private PedidoDAO pedidoDAO;
     private Cliente marge;
 
-    @After
-    public void cleanUp(){
-        SessionFactoryProvider.destroy();
-    }
+//    @After
+//    public void cleanUp(){
+//        SessionFactoryProvider.destroy();
+//    }
 
     @Before
     public void setUp(){
