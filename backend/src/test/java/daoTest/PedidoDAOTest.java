@@ -4,18 +4,19 @@ import backend.dao.PedidoDAO;
 import backend.entities.Cliente;
 import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.TipoChocolate;
+import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
+import backend.entities.chocolates.TipoChocolate.ChocolateConLeche;
+import backend.entities.chocolates.TipoChocolate.TipoChocolate;
 import backend.runner.Runner;
 import backend.runner.SessionFactoryProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static backend.entities.chocolates.Forma.HUEVO;
-import static backend.entities.chocolates.TipoChocolate.BLANCO;
+
 import static org.junit.Assert.assertEquals;
 
 public class PedidoDAOTest {
@@ -34,8 +35,8 @@ public class PedidoDAOTest {
 
     @Before
     public void setUp(){
-        chocolateBlanco = new Chocolate(HUEVO, BLANCO,100);
-        chocolateConLeche = new Chocolate(HUEVO, TipoChocolate.CONLECHE,100);
+        chocolateBlanco = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
+        chocolateConLeche = new Chocolate(new Huevo(), new ChocolateConLeche(),100);
 
         marge = new Cliente(203656838, "Marge Simpson", 123434141, "Avenida siempreviva 742", "marge@gmail.com");
         pedido1 = new Pedido(marge);

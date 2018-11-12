@@ -23,6 +23,15 @@
 
         <mapping class="backend.entities.chocolates.Chocolate" />
         <mapping class="backend.entities.Pedido" />
+        <mapping class="backend.entities.chocolates.Forma.Forma" />
+        <mapping class="backend.entities.chocolates.Forma.Figura" />
+        <mapping class="backend.entities.chocolates.Forma.Huevo" />
+        <mapping class="backend.entities.chocolates.Forma.Bombones" />
+        <mapping class="backend.entities.chocolates.TipoChocolate.TipoChocolate" />
+        <mapping class="backend.entities.chocolates.TipoChocolate.ChocolateBlanco" />
+        <mapping class="backend.entities.chocolates.TipoChocolate.ChocolateSemiAmargo" />
+        <mapping class="backend.entities.chocolates.TipoChocolate.ChocolateConLeche" />
+
 
     </session-factory>
 </hibernate-configuration>
