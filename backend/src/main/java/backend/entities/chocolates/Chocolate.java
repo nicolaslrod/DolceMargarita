@@ -1,5 +1,8 @@
 package backend.entities.chocolates;
 
+import backend.entities.chocolates.Forma.Forma;
+import backend.entities.chocolates.TipoChocolate.TipoChocolate;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,10 +11,10 @@ public class Chocolate {
     @Id
     private String nombre;
 
-    @Enumerated(value = EnumType.STRING)
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Forma forma;
 
-    @Enumerated(value = EnumType.STRING)
+    @ManyToOne(cascade = {CascadeType.ALL})
     private TipoChocolate colorChocolate;
 
     private Integer pesoGramos;
@@ -22,7 +25,7 @@ public class Chocolate {
         this.forma = unaForma;
         this.colorChocolate = unTipo;
         this.pesoGramos = unPeso;
-        this.nombre = unaForma.toString() + unTipo.toString();
+        this.nombre = unaForma.getClass().toString() + unTipo.getClass().toString();
     }
 
     public Forma forma() {

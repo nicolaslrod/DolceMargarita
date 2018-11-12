@@ -1,15 +1,14 @@
 package serviceTest;
 
 import backend.entities.chocolates.Chocolate;
-import backend.runner.SessionFactoryProvider;
+import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import backend.service.ServiceChocolate;
 import backend.service.TestService;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static backend.entities.chocolates.Forma.HUEVO;
-import static backend.entities.chocolates.TipoChocolate.BLANCO;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class ServiceChocolateTest {
@@ -20,19 +19,22 @@ public class ServiceChocolateTest {
 
     @Before
     public void setUp(){
-        this.chocolate = new Chocolate(HUEVO, BLANCO,100);
+        this.chocolate = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
     }
-
+/*
     @After
     public void cleanUp(){
         SessionFactoryProvider.destroy();
     }
+*/
 
     @Test
     public void seRecuperaLaListaDeChocolatesQueSoloContieneUnChocolateDeTipoHuevoBlanco(){
         this.testService.crearEntidad(this.chocolate);
         assertEquals(1,this.service.getChocolates().size());
-        assertEquals(HUEVO,this.service.getChocolates().get(0).forma());
-        assertEquals(BLANCO,this.service.getChocolates().get(0).tipoChocolate());
+        assertEquals(new Huevo().getClass().toString(),
+                this.service.getChocolates().get(0).forma().getClass().toString());
+        assertEquals(new ChocolateBlanco().getClass().toString(),
+                this.service.getChocolates().get(0).tipoChocolate().getClass().toString());
     }
 }
