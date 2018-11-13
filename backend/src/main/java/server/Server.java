@@ -2,7 +2,6 @@ package server;
 
 import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.TipoChocolate;
 import backend.service.ServiceChocolate;
 import org.uqbar.xtrest.api.Result;
 import org.uqbar.xtrest.api.annotation.Body;
@@ -18,12 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.uqbar.xtrest.result.ResultFactory.ok;
+
 
 public class Server extends ResultFactory {
 
@@ -46,7 +44,7 @@ public class Server extends ResultFactory {
 
         return ResultFactory.ok(this.JSONUtils.toJson(data));
     }
-
+/*
     @Get("/tiposChocolate")
     public Result getTiposChocolate(final String target, final Request baseRequest,
                                 final HttpServletRequest request, final HttpServletResponse response) {
@@ -56,7 +54,7 @@ public class Server extends ResultFactory {
 
         return ResultFactory.ok(this.JSONUtils.toJson(data));
     }
-
+*/
     @Post("/pedidos")
     public Result agregarPedido(@Body final String body, final String target, final Request baseRequest,
                                 final HttpServletRequest request, final HttpServletResponse response) {
