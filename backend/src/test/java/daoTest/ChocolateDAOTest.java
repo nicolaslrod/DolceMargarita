@@ -35,10 +35,9 @@ public class ChocolateDAOTest {
 
             chocolateDAO.guardar(chocolateBlanco);
 
-            Chocolate chocoBlancoRecuperado = chocolateDAO.recuperar(
-                    chocolateBlanco.forma().getClass().toString() + chocolateBlanco.tipoChocolate().getClass().toString());
+            Chocolate chocoBlancoRecuperado = chocolateDAO.recuperar(chocolateBlanco.getNombre());
 
-            assertEquals(chocoBlancoRecuperado.getNombre(), chocolateBlanco.forma().getClass().toString() + chocolateBlanco.tipoChocolate().getClass().toString());
+            assertEquals(chocoBlancoRecuperado.getNombre(), chocolateBlanco.forma().getClass().getSimpleName() +" de "+chocolateBlanco.tipoChocolate().getClass().getSimpleName());
 
             return null;
         });

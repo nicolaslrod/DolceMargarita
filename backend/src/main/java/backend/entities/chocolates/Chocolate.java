@@ -25,7 +25,7 @@ public class Chocolate {
         this.forma = unaForma;
         this.colorChocolate = unTipo;
         this.pesoGramos = unPeso;
-        this.nombre = unaForma.getClass().toString() + unTipo.getClass().toString();
+        this.nombre = unaForma.getClass().getSimpleName()+" de "+unTipo.getClass().getSimpleName();
     }
 
     public Forma forma() {
