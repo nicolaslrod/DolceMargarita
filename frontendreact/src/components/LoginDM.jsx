@@ -24,7 +24,7 @@ class LoginDM extends React.Component {
             </div>
           </div>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary form-headin2"
             type="button"
             onClick={() => this.startHome()}
           >

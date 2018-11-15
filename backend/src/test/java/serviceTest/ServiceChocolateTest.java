@@ -3,8 +3,10 @@ package serviceTest;
 import backend.entities.chocolates.Chocolate;
 import backend.entities.chocolates.Forma.Huevo;
 import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
+import backend.runner.SessionFactoryProvider;
 import backend.service.ServiceChocolate;
 import backend.service.TestService;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,12 +23,12 @@ public class ServiceChocolateTest {
     public void setUp(){
         this.chocolate = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
     }
-/*
+
     @After
     public void cleanUp(){
         SessionFactoryProvider.destroy();
     }
-*/
+
 
     @Test
     public void seRecuperaLaListaDeChocolatesQueSoloContieneUnChocolateDeTipoHuevoBlanco(){

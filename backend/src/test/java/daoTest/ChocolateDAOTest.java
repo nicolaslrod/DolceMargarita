@@ -20,7 +20,7 @@ public class ChocolateDAOTest {
 
     @After
     public void cleanUp(){
-        SessionFactoryProvider.destroy();
+        //SessionFactoryProvider.destroy();
     }
 
     @Before
