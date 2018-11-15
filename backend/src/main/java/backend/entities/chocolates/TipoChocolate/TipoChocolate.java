@@ -10,5 +10,13 @@ public abstract class TipoChocolate {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
+    private String img;
+
     public TipoChocolate(){}
+
+    public Integer getId(){ return this.id;}
+
+    public void addImg(String img) { this.img = img; }
+
+    public String getImg() { return this.img; }
 }

@@ -3,7 +3,13 @@ body{ background-image:url("https://tved-prod.adobecqms.net/content/dam/editoria
 .form-headin { color:#fd9800; font-size:23px;text-decoration: underline;  }
 
 
-.form-headin2 { color:#f1f1ee;}
+.form-headin2 { color:#13130e;
+  text-decoration-color: #13130e;
+}
+.form-headin3 { 
+  color:#13130e;
+
+}
 
 
 
@@ -25,8 +31,9 @@ body{ background-image:url("https://tved-prod.adobecqms.net/content/dam/editoria
 .login-form  .btn.btn-primary {
   background: #fa860298;
   border-color: #777777;
-  color: beige;
-  font-size: 14px;
+  color: rgb(3, 3, 3);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
   width: 20%;
   margin-top: 10px;
   height: 50px;
