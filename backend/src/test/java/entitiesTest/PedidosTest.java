@@ -3,12 +3,11 @@ package entitiesTest;
 import backend.entities.Cliente;
 import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.Forma.Figura;
-import backend.entities.chocolates.Forma.Forma;
-import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.Forma.Figuras;
+import backend.entities.chocolates.Forma.Huevos;
+import backend.entities.chocolates.Tamanio.Grande;
 import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import backend.entities.chocolates.TipoChocolate.ChocolateSemiAmargo;
-import backend.entities.chocolates.TipoChocolate.TipoChocolate;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,8 +21,8 @@ public class PedidosTest {
 
     @Before
     public void setUp(){
-        choco1 = new Chocolate(new Figura(), new ChocolateSemiAmargo(), 100);
-        choco2 = new Chocolate(new Huevo(), new ChocolateBlanco(), 500);
+        choco1 = new Chocolate(new Figuras(), new ChocolateSemiAmargo(), 100);
+        choco2 = new Chocolate(new Huevos(new Grande()), new ChocolateBlanco(), 500);
         marge = new Cliente(203656838, "Marge Simpson", 123434141, "Avenida siempreviva 742", "marge@gmail.com");
     }
 

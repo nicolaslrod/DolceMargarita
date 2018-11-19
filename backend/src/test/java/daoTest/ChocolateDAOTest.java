@@ -2,7 +2,8 @@ package daoTest;
 
 import backend.dao.ChocolateDAO;
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.Forma.Huevos;
+import backend.entities.chocolates.Tamanio.Grande;
 import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import backend.runner.Runner;
 import backend.runner.SessionFactoryProvider;
@@ -20,12 +21,12 @@ public class ChocolateDAOTest {
 
     @After
     public void cleanUp(){
-        //SessionFactoryProvider.destroy();
+        SessionFactoryProvider.destroy();
     }
 
     @Before
     public void setUp(){
-        chocolateBlanco = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
+        chocolateBlanco = new Chocolate(new Huevos(new Grande()), new ChocolateBlanco(),100);
         chocolateDAO = new ChocolateDAO();
     }
 

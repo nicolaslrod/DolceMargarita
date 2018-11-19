@@ -1,7 +1,8 @@
 package entitiesTest;
 
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.Forma.Huevos;
+import backend.entities.chocolates.Tamanio.Grande;
 import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +17,12 @@ public class ChocolatesTest {
 
     @Before
     public void setUp(){
-        choco = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
+        choco = new Chocolate(new Huevos(new Grande()), new ChocolateBlanco(),100);
     }
 
     @Test
     public void lePidoSuFormaAUnHuevo(){
-        assertEquals(choco.forma().getClass().toString(),  new Huevo().getClass().toString());
+        assertEquals(choco.forma().getClass().toString(),  new Huevos(new Grande()).getClass().toString());
     }
 
     @Test
