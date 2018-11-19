@@ -1,11 +1,14 @@
 import React from 'react';
 import '../dist/LoginDm.css';
 import Carousel from 'nuka-carousel';
+import Ionicon from 'react-ionicons';
+
 
 
 
 
 class LoginDM extends React.Component {
+
   startHome() {
     this.props.history.push('/home');
   }
@@ -50,15 +53,12 @@ class LoginDM extends React.Component {
     );
   }
 
-  renderItemCarousel(){
-
-  }
-
   renderCarousel() {
     return(
-      <Carousel width="600px">
-          <img src='https://www.explorecornwallapp.com/media.ashx/counter-w_870_489.jpg' className="img-sizes" alt="logo" />
-          <img src='https://schrammsflowers.com/wp-content/uploads/2017/12/chocolate.jpg' className="img-sizes" alt="logo" />
+      <Carousel width="600px" wrapAround="true" transitionMode="fade" framePadding="10px">
+          <img src='https://www.explorecornwallapp.com/media.ashx/counter-w_870_489.jpg' className="img-sizes" alt="Fabrica de chocolate" />
+          <img src='https://schrammsflowers.com/wp-content/uploads/2017/12/chocolate.jpg' className="img-sizes" alt="Fabrica de chocolate" />
+          <img src='https://i1.wp.com/www.noticiasbrown.com/wp-content/uploads/2018/03/chocolate-amargo.jpg?fit=645%2C429' className="img-sizes" alt="Fabrica de chocolate" />
       </Carousel> 
     );
     
@@ -79,6 +79,17 @@ class LoginDM extends React.Component {
     );
   }
 
+  renderFoot() {
+    return(
+      <div>
+        <Ionicon icon="logo-facebook" />  
+        <a href="https://www.facebook.com/dolce.margarita/" className="a">
+          @dolce.margarita
+        </a>
+      </div>
+    );
+  }
+
   render() {
     return (
         <div>
@@ -86,6 +97,7 @@ class LoginDM extends React.Component {
             ('https://cdn.discordapp.com/attachments/499372006782009345/513852433496014853/dmLOGO.png',
             'Logo de DM')}
           {this.renderContent()}
+          {this.renderFoot()}
         </div>
     );
   }
