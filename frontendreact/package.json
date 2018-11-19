@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "boostrap": "^2.0.0",
+    "nuka-carousel": "^4.4.3",
     "react": "^16.6.0",
+    "react-bootstrap-carousel": "^3.4.1",
     "react-dom": "^16.6.0",
     "react-ionicons": "^2.1.6",
     "react-router": "^4.3.1",
