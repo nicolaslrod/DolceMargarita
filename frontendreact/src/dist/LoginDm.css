@@ -3,20 +3,21 @@ body{
   
 }
 
-.form-headin { color:#fd9800; font-size:23px;text-decoration: underline;  }
-
 .form-headin2 { color:#13130e;
   text-decoration-color: #13130e;
 }
-.form-headin3 { 
-  color:#13130e;
 
-}
-
-.contenedor3 {
+.flex {
   display: flex;
 }
 
+.alignCenter {
+  align-items: center;
+}
+
+.padding {
+  padding: 0px 0px 100px 100px;
+}
 
 .a {
   font-size: 20px; 
@@ -37,7 +38,7 @@ body{
   height: 500px;
 }
 
-.login-form .form-group {
+.login-form {
   margin-bottom:10px;
 }
 .login-form{ text-align:center;}
@@ -75,33 +76,6 @@ body{
   width: 100%;
 }
 
-
-.colorBotton {
-  background: #fa860298;
-  border-color: #fa860298;
-}
-
-.title {
-  color: goldenrod; 
-  font-size:40px;
-  font-family: fantasy
-}
-
 .subtitle{
   font-size:30px; text-align: left;
-}
-
-
-.titleFinsh {
-  font-size:60px;;
-}
-
-.colorWhite{
-  color: #fafafa;
-}
-
-.wrapper {
-  overflow: hidden;
-  display: inherit;
-  
 }

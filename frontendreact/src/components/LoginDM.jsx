@@ -66,9 +66,9 @@ class LoginDM extends React.Component {
 
   renderContent() {
     return(
-      <div className="loging-dm contenedor3">
+      <div className="loging-dm flex">
         <div className="main-div">
-          <div className="contenido3">
+          <div>
             {this.renderTitle('Dolce margarita')}
             {this.renderTextForLogdinDM()}
           </div>

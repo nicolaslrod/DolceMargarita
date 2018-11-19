@@ -7,6 +7,7 @@ import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import backend.entities.chocolates.TipoChocolate.TipoChocolate;
 import backend.service.ServiceChocolate;
 import backend.service.ServiceForma;
+import backend.service.ServiceTamanio;
 import backend.service.ServiceTipoChocolate;
 import org.uqbar.xtrest.api.Result;
 import org.uqbar.xtrest.api.annotation.Body;
@@ -17,6 +18,7 @@ import org.uqbar.xtrest.json.JSONUtils;
 import org.eclipse.jetty.server.Request;
 import org.uqbar.xtrest.result.ResultFactory;
 import server.frontClasses.FormaFront;
+import server.frontClasses.TamanioFront;
 import server.frontClasses.TipoChocolateFront;
 
 import javax.servlet.ServletException;
@@ -36,6 +38,7 @@ public class Server extends ResultFactory {
     private ServiceForma formas;
     private ServiceTipoChocolate tiposChocolate;
     private JSONUtils JSONUtils;
+    private ServiceTamanio tamanio;
 
 
     public Server() {
@@ -43,6 +46,7 @@ public class Server extends ResultFactory {
         this.servicioDeChocolates = new ServiceChocolate();
         this.formas = new ServiceForma();
         this.tiposChocolate = new ServiceTipoChocolate();
+        this.tamanio = new ServiceTamanio();
 
     }
 
@@ -67,6 +71,19 @@ public class Server extends ResultFactory {
         response.setContentType(ContentType.APPLICATION_JSON);
 
         List<Chocolate> data = this.servicioDeChocolates.getChocolates();
+
+
+        return ResultFactory.ok(this.JSONUtils.toJson(data));
+    }
+
+    @Get("/tamanios")
+    public Result getTamanios(final String target, final Request baseRequest,
+                                final HttpServletRequest request, final HttpServletResponse response) {
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        List<TamanioFront> data =
+                this.tamanio.recuperarTodos().stream().map( t -> new TamanioFront
+                        (t.getClass().getSimpleName(), t.getImg())).collect(Collectors.toList());
 
 
         return ResultFactory.ok(this.JSONUtils.toJson(data));
@@ -114,6 +131,9 @@ public class Server extends ResultFactory {
         }
         {
             handleGet(target, baseRequest, request, response, "/formas");
+        }
+        {
+            handleGet(target, baseRequest, request, response, "/tamanios");
         }
         {
             handlePost(target, baseRequest, request, response, "/pedidos");
@@ -165,6 +185,22 @@ public class Server extends ResultFactory {
             response.setContentType("application/json");
 
             Result result = getFormas(target, baseRequest, request, response);
+            result.process(response);
+
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            baseRequest.setHandled(true);
+            return;
+        }
+
+        if (request.getMethod().equalsIgnoreCase("Get") && matcher.matches() && endPoint.equals("/tamanios")) {
+            // take parameters from request
+
+            // take variables from url
+
+            // set default content type (it can be overridden during next call)
+            response.setContentType("application/json");
+
+            Result result = getTamanios(target, baseRequest, request, response);
             result.process(response);
 
             response.addHeader("Access-Control-Allow-Origin", "*");

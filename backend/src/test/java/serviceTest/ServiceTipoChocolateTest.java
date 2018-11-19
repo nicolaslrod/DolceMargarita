@@ -12,13 +12,11 @@ import static junit.framework.TestCase.assertNotNull;
 
 public class ServiceTipoChocolateTest {
 
-    private TestService testService;
     private ServiceTipoChocolate serviceTipoChocolate;
 
     @Before
     public void setUp(){
         Loader.load();
-        this.testService = new TestService();
         this.serviceTipoChocolate = new ServiceTipoChocolate();
     }
 

@@ -1,41 +1,56 @@
 import React from 'react';
 import '../dist/LoginDm.css';
 import { Link } from 'react-router-dom';
+import API from '../service/api.js';
 
 export default class HomeDM extends React.Component {
-  redirectT() {
-    this.props.history.push('/tamanio');
+ 
+  constructor(){
+    super();
+    this.state = {
+      formas: [],
+    }
+  }
+
+  componentDidMount() {
+    API.get('/formas')
+      .then(response => this.setState({ formas: response }))
+      .catch(console.log);
+  }
+
+  renderImg(link, description) {
+    return(
+      <div align="center">
+        <img src={link}  alt={description}/>
+      </div>
+    );
+  }
+
+  renderItem(item) {
+    return(
+      <div align="center" className="padding">
+          <Link to="/tamanio">
+            <img src={item.img} alt="Huevos" width="300" height="300" />
+          </Link>
+          <h5>{item.nombre}</h5>
+      </div>
+    );
   }
 
   render() {
     return (
       <div>
         <div>
-          <h1 className="title" align="center">Dolce Margarita</h1>
+        {this.renderImg
+            ('https://cdn.discordapp.com/attachments/499372006782009345/513852433496014853/dmLOGO.png',
+            'Logo de DM')}
         </div>
         <div>
-          <h3 className="subtitle colorWhite">Nuestra seleccion</h3>
+          <h3 className="subtitl">Nuestra seleccion</h3>
         </div>
         <div>
-          <div className="form-inline">
-            <div align="center">
-              <Link to="/tamanio">
-                <img src="https://www.apertura.com/__export/1522099025954/sites/revistaap/img/2018/03/26/shutterstock_794054212.jpg_1913337537.jpg" alt="Huevos" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Huevos de chocolate</h5>
-            </div>
-            <div align="center">
-              <Link to="/tipo">
-                <img src="http://europabarbacoa.es/wp-content/uploads/2014/09/Figuras-de-Lego-de-chocolate-comestibles-1-1024x682.jpg" alt="Figuras" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Figuras de chocolate</h5>
-            </div>
-            <div align="center">
-              <Link to="/tipo">
-                <img src="https://t1.uc.ltmcdn.com/images/5/3/9/img_como_hacer_bombones_de_chocolate_con_licor_37935_600.jpg" alt="Bombones" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Bombones de chocolate</h5>
-            </div>
+          <div className="flex">
+            {this.state.formas.map( f => this.renderItem(f))}
           </div>
         </div>
       </div>
