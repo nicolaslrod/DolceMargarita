@@ -25,14 +25,35 @@ export default class HomeDM extends React.Component {
       </div>
     );
   }
+  switchTypesOfChocolates(tipoDeChocolate){
+    let linkToShow;
+     switch(tipoDeChocolate) {
+       case "Figuras":
+           linkToShow = "/forma"
+           break;
+ 
+       case "Huevos":
+       linkToShow = "/tipo"
+           break;
+ 
+       case "Bombones":
+        linkToShow = "/tamanio"
+           break;
+       
+           default :  linkToShow = "/forma"
 
+           return linkToShow;
+   } 
+   }
   renderItem(item) {
     return(
       <div align="center" className="padding">
-          <Link to="/tamanio">
+          <Link to="/forma" >
             <img src={item.img} alt="Huevos" width="300" height="300" />
+            
           </Link>
           <h5>{item.nombre}</h5>
+          
       </div>
     );
   }
@@ -46,7 +67,7 @@ export default class HomeDM extends React.Component {
             'Logo de DM')}
         </div>
         <div>
-          <h3 className="subtitl">Nuestra seleccion</h3>
+          <h2 className="subtitl" align="center">Nuestra seleccion</h2>
         </div>
         <div>
           <div className="flex">
