@@ -23,6 +23,7 @@
 
         <mapping class="backend.entities.chocolates.Chocolate" />
         <mapping class="backend.entities.Pedido" />
+        <mapping class="backend.entities.Cliente" />
         <mapping class="backend.entities.chocolates.Forma.Forma" />
         <mapping class="backend.entities.chocolates.Forma.Figuras" />
         <mapping class="backend.entities.chocolates.Forma.Huevos" />
