@@ -10,7 +10,7 @@ import LoginDM from './LoginDM.jsx';
 import Tamanio from './Tamaño.jsx';
 import LastView from './LastView.jsx';
 import Tipo from './Tipo.jsx';
-
+import Forma from './Forma.jsx';
 
 export default class App extends React.Component {
   render() {
@@ -20,6 +20,7 @@ export default class App extends React.Component {
             <Route exact path="/confirm" component={LastView} />
             <Route exact path="/tipo" component={Tipo} />
             <Route exact path="/tamanio" component={Tamanio} />
+            <Route exact path="/forma" component={Forma} />
             <Route exact path="/home" component={HomeDM} />
             <Route exact path="/" component={LoginDM} />
           </Switch>

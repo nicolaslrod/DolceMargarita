@@ -31,6 +31,22 @@ export default class HomeDM extends React.Component {
       </div>
     );
   }
+  switchTypesOfChocolates(tipoDeChocolate){
+    let linkToShow;
+     switch(tipoDeChocolate) {
+       case "Figuras":
+           linkToShow = "/forma"
+           break;
+ 
+       case "Huevos":
+       linkToShow = "/tipo"
+           break;
+ 
+       case "Bombones":
+        linkToShow = "/tamanio"
+           break;
+       
+           default :  linkToShow = "/forma"
 
   renderImg(img) {
     return(
