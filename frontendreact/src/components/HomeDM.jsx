@@ -47,6 +47,8 @@ export default class HomeDM extends React.Component {
            break;
        
            default :  linkToShow = "/forma"
+     }
+    }
 
   renderImg(img) {
     return(
@@ -71,12 +73,12 @@ export default class HomeDM extends React.Component {
 
   renderFlippy(item){
     return (
-      <Flippy
+      <Flippy  
         flipOnHover={false}
         flipOnClick={true} 
         flipDirection="horizontal"
         ref={(r) => this.flippy = r} 
-        style={{ width: '250px', height: '350px', padding: '10px'}}
+        style={{ width: '350px', height: '350px', padding: '10px'}}
         
       >
         <FrontSide
@@ -107,7 +109,12 @@ export default class HomeDM extends React.Component {
         <div className="card-body" align="center">
           <h3 className="card-title textT">{item.nombre}</h3>
           <div className="card-text">
-            <span className="badge badge-secondary">Añadir a carrito</span>
+          <Link to="/confirm">              
+              
+          <span className="badge badge-secondary">Añadir a carrito</span>
+          </Link>
+          
+             
             <Ionicon icon="md-cart" color="goldenrod" /> 
           </div>
         </div>
@@ -138,15 +145,14 @@ export default class HomeDM extends React.Component {
         <div align="center">
           {this.renderCarousel()}
         </div>
-        <div>
-          <h3 className="subtitle">Nuestra seleccion</h3>
+        <div >
+          <h5  className="subtitle2" > Nuestra Seleccion  </h5 >
         </div>
-        <div>
-          <div className="flex paddingG">
+        <div align="center">
+          <div className="flex paddingG" align="center">
             {this.state.formas.map( f => this.renderFlippy(f))}
           </div>
         </div>
       </div>
     );
-  }
-}
+  }   }
