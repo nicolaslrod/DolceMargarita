@@ -62,8 +62,7 @@ export default class HomeDM extends React.Component {
     return (
       <div>
         <div>
-        {this.renderImg
-            ('https://cdn.discordapp.com/attachments/499372006782009345/513852433496014853/dmLOGO.png',
+        {this.renderImg('https://cdn.discordapp.com/attachments/499372006782009345/513852433496014853/dmLOGO.png',
             'Logo de DM')}
         </div>
         <div>
