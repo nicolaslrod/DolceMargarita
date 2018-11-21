@@ -87,6 +87,12 @@ body{
   padding-bottom: 30px;
 }
 
+.subtitle2{
+  color: goldenrod;
+  font-size:50px; 
+  text-align: center;
+  padding-bottom: 30px;
+}
 .cardT {
   background-color: rgb(239, 228, 176);
   width: 400px;
