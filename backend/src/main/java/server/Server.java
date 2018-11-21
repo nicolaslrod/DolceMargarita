@@ -2,9 +2,6 @@ package server;
 
 import backend.entities.Pedido;
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.Forma.Forma;
-import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
-import backend.entities.chocolates.TipoChocolate.TipoChocolate;
 import backend.service.ServiceChocolate;
 import backend.service.ServiceForma;
 import backend.service.ServiceTamanio;

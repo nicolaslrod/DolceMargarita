@@ -1,6 +1,5 @@
 body{ 
-  background-color: rgb(239, 228, 176)
-  
+  background-color: rgb(239, 228, 176);  
 }
 
 .form-headin2 { color:#13130e;
@@ -12,11 +11,16 @@ body{
 }
 
 .alignCenter {
+  align-self: center;
   align-items: center;
 }
 
 .padding {
-  padding: 0px 0px 100px 100px;
+  padding: 0px 0px 100px 170px;
+}
+
+.paddingG {
+  padding: 0px 0px 0px 250px; 
 }
 
 .a {
@@ -77,5 +81,29 @@ body{
 }
 
 .subtitle{
-  font-size:30px; text-align: left;
+  color: goldenrod;
+  font-size:50px; 
+  text-align: left;
+  padding-bottom: 30px;
+}
+
+.cardT {
+  background-color: rgb(239, 228, 176);
+  width: 400px;
+  height: 200px;
+
+} 
+
+.textT {
+  opacity: .8;
+  color: goldenrod;
+  align-self: auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.imgT {
+  width: 200px; 
+  height: 240px;
+  align-self: center; 
 }
