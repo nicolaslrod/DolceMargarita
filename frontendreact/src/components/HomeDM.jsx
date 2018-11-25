@@ -109,6 +109,7 @@ export default class HomeDM extends React.Component {
         <div className="card-body" align="center">
           <h3 className="card-title textT">{item.nombre}</h3>
           <div className="card-text">
+          
           <Link to="/confirm">              
               
           <span className="badge badge-secondary">Añadir a carrito</span>
@@ -126,6 +127,7 @@ export default class HomeDM extends React.Component {
     return(
       <div>
         <Header />
+        
       </div>
     );
   }
@@ -147,10 +149,15 @@ export default class HomeDM extends React.Component {
         </div>
         <div >
           <h5  className="subtitle2" > Nuestra Seleccion  </h5 >
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+          
+          <meta name="google-signin-client_id" content="https://www.googleapis.com/oauth2/v1/certs.apps.googleusercontent.com"></meta>
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
         <div align="center">
           <div className="flex paddingG" align="center">
             {this.state.formas.map( f => this.renderFlippy(f))}
+            
           </div>
         </div>
       </div>
