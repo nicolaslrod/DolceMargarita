@@ -2,7 +2,7 @@ import React from 'react';
 import '../dist/LoginDm.css';
 import Carousel from 'nuka-carousel';
 import Ionicon from 'react-ionicons';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -13,6 +13,7 @@ class LoginDM extends React.Component {
   startHome() {
     this.props.history.push('/home');
   }
+  
 
 
   renderImg(link, description) {
@@ -41,7 +42,17 @@ class LoginDM extends React.Component {
       </h5>
     );
   }
-
+  renderGoogleButton(text) {
+    return(
+      <button
+      className="btn-dm"
+      type="button"
+      onClick={() => this.googleLogin()}
+    >
+        {text}
+    </button>
+    );
+  }
   renderButtonWithFunction(text) {
     return(
       <button
@@ -75,7 +86,12 @@ class LoginDM extends React.Component {
             {this.renderTitle('Dolce margarita')}
             {this.renderTextForLogdinDM()}
           </div>
+          <Link to="/login">              
+          
+          <button  type="button" className="btn-dm">Registrarse <Ionicon icon="logo-google" fontSize="25px" /></button>
+          </Link>
           {this.renderButtonWithFunction('Empezar')}
+          
         </div>
         {this.renderCarousel()}
       </div>
