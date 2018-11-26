@@ -62,6 +62,7 @@ export default class HomeDM extends React.Component {
   renderCarousel() {
     return(
       <Carousel wrapAround="true" transitionMode="fade" autoplay="true" withoutControls="true ">
+          <img src='https://i0.wp.com/www.wallpapersbyte.com/wp-content/uploads/2015/06/White-Daisies-Flowers-Petals-Blur-WallpapersByte-com-1366x768.jpg?ssl=1' className="img-sizes" alt="Fabrica de chocolate" />
           <img src='https://images5.alphacoders.com/431/thumb-1920-431467.jpg' className="img-sizes" alt="Fabrica de chocolate" />
           <img src='https://schrammsflowers.com/wp-content/uploads/2017/12/chocolate.jpg' className="img-sizes" alt="Fabrica de chocolate" />
           <img src='https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-HD-Chocolate-Background-PIC-WPC006562.jpg' className="img-sizes" alt="Fabrica de chocolate" />
@@ -90,7 +91,13 @@ export default class HomeDM extends React.Component {
         </FrontSide>
         <BackSide
           style={{ backgroundColor: '#FFFACD'}}>
-         <h3 align="left">Descripcion del producto</h3>
+         <h3 align="left">
+          Precios <br></br>
+          
+          Figuras: Desde $300
+          Huevos : $20- $1800
+          Bombones: Kg $1500
+          </h3>
         </BackSide>
       </Flippy>
       

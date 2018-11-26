@@ -35,8 +35,8 @@ class LoginDM extends React.Component {
   renderTextForLogdinDM() {
     return(
       <h5 className="form-headin2">
-        Dolce Margarita nace al 10 de julio de 2012 en la ciudad de Berazatefui, por iniciativa de Eli la mama de Belen.
-        Fuimos inicialmente concebidos como un hobby, pero en el año 2013 decidimos emprender en la venta de chocolates, logrando de esta manera conformar una variada gama de productos para satisfacer la necesidad de ingerir azucar de nuestros clientes.
+        Dolce Margarita nace el 10 de julio de 2012 en la ciudad de Berazategui, por iniciativa Elisabet Tassiello.
+        Fuimos inicialmente concebidos como un hobby, pero en el año 2013 decidimos emprender en la venta de chocolates, logrando de esta manera conformar una variada gama de productos para satisfacer las necesidades de los clientes.
         Gradualmente nos fuimos expandiendo por todo el territorio de nuestro país, trayendo la mejor experiencia posible.
         Dolce Margarita no es solo chocolate, es una experiencia.
       </h5>
@@ -60,7 +60,8 @@ class LoginDM extends React.Component {
       type="button"
       onClick={() => this.startHome()}
     >
-        {text}
+        {text }
+        
     </button>
     );
   }
