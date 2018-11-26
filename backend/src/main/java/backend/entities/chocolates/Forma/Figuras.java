@@ -3,7 +3,7 @@ package backend.entities.chocolates.Forma;
 import javax.persistence.Entity;
 
 @Entity
-public class Figura extends Forma {
+public class Figuras extends Forma {
 
-    public Figura(){}
+    public Figuras(){}
 }

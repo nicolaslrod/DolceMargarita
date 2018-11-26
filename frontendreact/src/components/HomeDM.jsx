@@ -1,44 +1,158 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../dist/LoginDm.css';
 import { Link } from 'react-router-dom';
+import API from '../service/api.js';
+import Ionicon from 'react-ionicons';
+import Carousel from 'nuka-carousel';
+import Header from './Header.jsx';
+import Flippy, { FrontSide, BackSide } from 'react-flippy'; 
+
 
 export default class HomeDM extends React.Component {
-  redirectT() {
-    this.props.history.push('/tamanio');
+ 
+  constructor(){
+    super();
+    this.state = {
+      formas: [],
+    }
   }
 
-  render() {
+  componentDidMount() {
+    API.get('/formas')
+      .then(response => this.setState({ formas: response }))
+      .catch(console.log);
+  }
+
+  renderLogo(link, description) {
+    return(
+      <div align="center">
+        <img src={link}  alt={description}/>
+      </div>
+    );
+  }
+  switchTypesOfChocolates(tipoDeChocolate){
+    let linkToShow;
+     switch(tipoDeChocolate) {
+       case "Figuras":
+           linkToShow = "/forma"
+           break;
+ 
+       case "Huevos":
+       linkToShow = "/tipo"
+           break;
+ 
+       case "Bombones":
+        linkToShow = "/tamanio"
+           break;
+       
+           default :  linkToShow = "/forma"
+     }
+    }
+
+  renderImg(img) {
+    return(
+      <div align="center">
+        <img src={img} alt="Productos de chocolates" width="200" height="200" />
+      </div>
+    );
+  }
+
+
+  renderCarousel() {
+    return(
+      <Carousel wrapAround="true" transitionMode="fade" autoplay="true" withoutControls="true ">
+          <img src='https://images5.alphacoders.com/431/thumb-1920-431467.jpg' className="img-sizes" alt="Fabrica de chocolate" />
+          <img src='https://schrammsflowers.com/wp-content/uploads/2017/12/chocolate.jpg' className="img-sizes" alt="Fabrica de chocolate" />
+          <img src='https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-HD-Chocolate-Background-PIC-WPC006562.jpg' className="img-sizes" alt="Fabrica de chocolate" />
+      </Carousel> 
+    );
+    
+  }
+
+
+  renderFlippy(item){
+    return (
+      <Flippy  
+        flipOnHover={false}
+        flipOnClick={true} 
+        flipDirection="horizontal"
+        ref={(r) => this.flippy = r} 
+        style={{ width: '350px', height: '350px', padding: '10px'}}
+        
+      >
+        <FrontSide
+          style={{
+            backgroundColor: '#FFFACD',
+          }}
+        >
+         {this.createCardContent(item)}
+        </FrontSide>
+        <BackSide
+          style={{ backgroundColor: '#FFFACD'}}>
+         <h3 align="left">Descripcion del producto</h3>
+        </BackSide>
+      </Flippy>
+      
+    
+    
+      ); 
+    
+  }
+
+
+
+  createCardContent(item) { 
     return (
       <div>
-        <div>
-          <h1 className="title" align="center">Dolce Margarita</h1>
-        </div>
-        <div>
-          <h3 className="subtitle colorWhite">Nuestra seleccion</h3>
-        </div>
-        <div>
-          <div className="form-inline">
-            <div align="center">
-              <Link to="/tamanio">
-                <img src="https://www.apertura.com/__export/1522099025954/sites/revistaap/img/2018/03/26/shutterstock_794054212.jpg_1913337537.jpg" alt="Huevos" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Huevos de chocolate</h5>
-            </div>
-            <div align="center">
-              <Link to="/tipo">
-                <img src="http://europabarbacoa.es/wp-content/uploads/2014/09/Figuras-de-Lego-de-chocolate-comestibles-1-1024x682.jpg" alt="Figuras" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Figuras de chocolate</h5>
-            </div>
-            <div align="center">
-              <Link to="/tipo">
-                <img src="https://t1.uc.ltmcdn.com/images/5/3/9/img_como_hacer_bombones_de_chocolate_con_licor_37935_600.jpg" alt="Bombones" className="rounded-circle" width="300" height="300" />
-              </Link>
-              <h5 className="colorWhite">Bombones de chocolate</h5>
-            </div>
+        {this.renderImg(item.img)}
+        <div className="card-body" align="center">
+          <h3 className="card-title textT">{item.nombre}</h3>
+          <div className="card-text">
+          <Link to="/confirm">              
+              
+          <span className="badge badge-secondary">Añadir a carrito</span>
+          </Link>
+          
+             
+            <Ionicon icon="md-cart" color="goldenrod" /> 
           </div>
         </div>
       </div>
     );
   }
-}
+
+  renderMenu() {
+    return(
+      <div>
+        <Header />
+      </div>
+    );
+  }
+
+
+  render() {
+    return (
+      <div>
+        <div>
+        {this.renderLogo
+            ('https://cdn.discordapp.com/attachments/499372006782009345/513852433496014853/dmLOGO.png',
+            'Logo de DM')}
+        </div>
+        <div>
+          {this.renderMenu()}
+        </div>
+        <div align="center">
+          {this.renderCarousel()}
+        </div>
+        <div >
+          <h5  className="subtitle2" > Nuestra Seleccion  </h5 >
+        </div>
+        <div align="center">
+          <div className="flex paddingG" align="center">
+            {this.state.formas.map( f => this.renderFlippy(f))}
+          </div>
+        </div>
+      </div>
+    );
+  }   }

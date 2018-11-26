@@ -1,7 +1,8 @@
 package serviceTest;
 
 import backend.entities.chocolates.Chocolate;
-import backend.entities.chocolates.Forma.Huevo;
+import backend.entities.chocolates.Forma.Huevos;
+import backend.entities.chocolates.Tamanio.Grande;
 import backend.entities.chocolates.TipoChocolate.ChocolateBlanco;
 import backend.runner.SessionFactoryProvider;
 import backend.service.ServiceChocolate;
@@ -21,7 +22,7 @@ public class ServiceChocolateTest {
 
     @Before
     public void setUp(){
-        this.chocolate = new Chocolate(new Huevo(), new ChocolateBlanco(),100);
+        this.chocolate = new Chocolate(new Huevos(new Grande()), new ChocolateBlanco(),100);
     }
 
     @After
@@ -34,7 +35,7 @@ public class ServiceChocolateTest {
     public void seRecuperaLaListaDeChocolatesQueSoloContieneUnChocolateDeTipoHuevoBlanco(){
         this.testService.crearEntidad(this.chocolate);
         assertEquals(1,this.service.getChocolates().size());
-        assertEquals(new Huevo().getClass().toString(),
+        assertEquals(new Huevos().getClass().toString(),
                 this.service.getChocolates().get(0).forma().getClass().toString());
         assertEquals(new ChocolateBlanco().getClass().toString(),
                 this.service.getChocolates().get(0).tipoChocolate().getClass().toString());
