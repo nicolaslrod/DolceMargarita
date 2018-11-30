@@ -13,7 +13,7 @@ export default class BuyProduct extends React.Component {
         this.state = {
             product: '',
             forma: '',
-            quantity: 0,
+            quantity: 1,
             quantityInQuaters: 250,
             quantityInQuatersDecimal: 0.250,
         };
@@ -69,10 +69,42 @@ export default class BuyProduct extends React.Component {
             <div>
                 {this.renderTitile()}
                 <div className="displayFlex">
-                    {this.renderFigurasInfoAndImg()}
+                    {this.renderGralInfoAndImg()}
                 </div>
             </div>
         );
+    }
+
+
+    renderGralInfoAndImg() {
+        return (
+            <div className="row"> 
+                {this.renderImg()}
+                {this.renderInfoGral()}
+            </div>
+        );
+    }
+
+    renderInfoGral() {
+        return(
+            <div className="col">
+                <h5><span>
+                    {this.props.match.params.type.toLowerCase() === 'figuras'? this.textFiguras() : this.textHuevos()}
+                    </span></h5>
+                <div>
+                    {this.renderCounter()}
+                    {this.renderButtonToConfirm()}
+                </div>
+            </div>
+        );
+    }
+
+    textFiguras() {
+        return "Figuras de chocolates, arte hecho chocolate"
+    }
+
+    textHuevos() {
+        return "Increibles huevos de chocolates de diferentes tamaños"
     }
 
     renderContentHuevos() {
@@ -80,7 +112,7 @@ export default class BuyProduct extends React.Component {
             <div>
                 {this.renderTitile()}
                 <div className="displayFlex container">
-                    {this.renderHuevosInfoAndImg()}
+                    {this.renderGralInfoAndImg()}
                 </div>
             </div>
         );
@@ -129,19 +161,19 @@ export default class BuyProduct extends React.Component {
             }
         }
         else {
-           if(this.state.quantity > 0) this.setState({ quantity: this.state.quantity - 1})
+           if(this.state.quantity > 1) this.setState({ quantity: this.state.quantity - 1})
         }
     }
 
     renderCounter() {
         return(
             <div className="displayFlex">
-                <button type="button" className="btn btn-outline-warning" onClick={()=> (this.addQuantity())}>
-                    <Ionicon icon="ios-add-circle" color="goldenrod" fontSize="35px" />
-                </button>
-                {this.renderStateOfQuantity()}
                 <button type="button" className="btn btn-outline-warning" onClick={()=> (this.removeQuantity())}>
                     <Ionicon icon="ios-remove-circle" color="goldenrod" fontSize="35px" />
+                </button>
+                    {this.renderStateOfQuantity()}
+                <button type="button" className="btn btn-outline-warning" onClick={()=> (this.addQuantity())}>
+                    <Ionicon icon="ios-add-circle" color="goldenrod" fontSize="35px" />
                 </button>
             </div>
         );
@@ -181,12 +213,27 @@ export default class BuyProduct extends React.Component {
         );
     }
 
+    redirect() {
+        this.props.history.push('/carrito');
+    }
+
     renderImg() {
         return (
             <div className="col">
-                <img src={"https://t1.uc.ltmcdn.com/images/5/3/9/img_como_hacer_bombones_de_chocolate_con_licor_37935_600.jpg"} height="300px" alt="producto selescionado" />
+                <img src={this.img()} height="300px" alt="producto selescionado" />
             </div>
         );
+    }
+
+    img() {
+        switch(this.props.match.params.type.toLowerCase()){
+            case 'bombones':
+                return "https://t1.uc.ltmcdn.com/images/5/3/9/img_como_hacer_bombones_de_chocolate_con_licor_37935_600.jpg"
+            case 'figuras':
+                return "http://www.bellasfondos.eu/pics/2016/1220/1/chocolate-milk-horses-background-227795.jpg";
+            default:
+                return "http://aspic.es/wp-content/uploads/2016/03/Huevos-de-chocolate-20.jpg"
+        }
     }
 
     render() {

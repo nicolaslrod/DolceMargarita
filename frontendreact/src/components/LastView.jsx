@@ -5,24 +5,6 @@ import CreditCardInput from 'react-credit-card-input';
 
 export default class LastView extends React.Component {
 
-<<<<<<< HEAD
-  constructor(proops){
-    super(proops);
-    this.state = 
-    {
-    datosCliente:{
-      nombre: '',
-      apellido: '',
-      email: '',
-      DNI: '',
-      tel: '',
-      cantidad: '',
-      },
-      url:{ 
-        url:'',
-      }  
-    }
-=======
   constructor(props) {
     super(props)
 
@@ -33,7 +15,6 @@ export default class LastView extends React.Component {
       dniCliente: null,
       telefonoCliente: null,
     };
->>>>>>> 4f7dc061c8aa2aa5e408e8265673615eaf70bc4f
   }
 
   finishSell() {
@@ -46,55 +27,6 @@ export default class LastView extends React.Component {
     );
   }
 
-<<<<<<< HEAD
-  handleChange(event) {
-    this.setState({ datosCliente: event.target.value });
-  }
-
-  handleSubmit() {
-    this.props.history.push(this.state.url.url);
-  }
-
-
-  render() {
-    return (
-      <div align="center">
-        <div>
-        <h4 align="center" className="colorWhite titleFinsh">bdalchmal halkcmhalshcrmflasfhclskafhmcasklhfcmlkashfmcklahmfca[klshmclkashmclskahmclkashmfclskafhmcsklahcml</h4>
-          <form>
-            <label>
-              Nombre:
-    <input type="text" name="Nombre y Apellido" />
-            </label>
-          </form>
-         < form>
-            <label>
-              Apellido:
-    <input type="text" name="Nombre y Apellido" />
-            </label> 
-          </form>
-          <form>
-            <label>
-              E-Mail :
-    <input type="text" name="Nombre y Apellido" />
-            </label>
-          </form>
-          <form>
-            <label>
-              D.N.I  :
-    <input type="number" name="Nombre y Apellido" />
-            </label>
-            
-          </form>
-          <form>
-            <label>
-              Telefono:
-    <input type="number" name="Nombre y Apellido" />
-            </label>
-            
-          </form>
-          
-=======
   setNombre = (nombre) => {
     this.setState({nombreCliente: nombre})
   }
@@ -141,7 +73,6 @@ export default class LastView extends React.Component {
         </form>
 
         <form>
->>>>>>> 4f7dc061c8aa2aa5e408e8265673615eaf70bc4f
           <label>
             D.N.I  :
           </label>
