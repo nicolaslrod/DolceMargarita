@@ -11,15 +11,17 @@ import Tamanio from './Tamaño.jsx';
 import LastView from './LastView.jsx';
 import Tipo from './Tipo.jsx';
 import Forma from './Forma.jsx';
-import LastView2 from './LastView2.jsx';
+import Facebook from './Facebook.jsx';
+
 
 export default class App extends React.Component {
   render() {
     return (
+      
       <BrowserRouter>
           <Switch>
             <Route exact path="/confirm" component={LastView} />
-            <Route exact path="/login" component={LastView2} />
+            <Route exact path="/login" component={Facebook} />
             <Route exact path="/tipo" component={Tipo} />
             <Route exact path="/tamanio" component={Tamanio} />
             <Route exact path="/forma" component={Forma} />
