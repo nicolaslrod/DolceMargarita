@@ -5,6 +5,25 @@ import CreditCardInput from 'react-credit-card-input';
 
 
 export default class LastView extends React.Component {
+
+  constructor(proops){
+    super(proops);
+    this.state = 
+    {
+    datosCliente:{
+      nombre: '',
+      apellido: '',
+      email: '',
+      DNI: '',
+      tel: '',
+      cantidad: '',
+      },
+      url:{ 
+        url:'',
+      }  
+    }
+  }
+
   finishSell() {
     return (
       <div>
@@ -15,47 +34,38 @@ export default class LastView extends React.Component {
     );
   }
 
+  handleChange(event) {
+    this.setState({ datosCliente: event.target.value });
+  }
+
+  handleSubmit() {
+    this.props.history.push(this.state.url.url);
+  }
+
+
   render() {
     return (
       <div align="center">
-      <h4 align="center" className="colorWhite titleFinsh">Datos de Tarjeta</h4>
-
-        <CreditCardInput  fieldClassName="input"     />
-        <form>
-            
-            
-          </form>
         <div>
-        <h4 align="center" className="colorWhite titleFinsh">Datos de cliente</h4>
+        <h4 align="center" className="colorWhite titleFinsh">bdalchmal halkcmhalshcrmflasfhclskafhmcasklhfcmlkashfmcklahmfca[klshmclkashmclskahmclkashmfclskafhmcsklahcml</h4>
           <form>
             <label>
               Nombre:
     <input type="text" name="Nombre y Apellido" />
             </label>
-           
           </form>
-
          < form>
             <label>
               Apellido:
     <input type="text" name="Nombre y Apellido" />
-            </label>
-           
+            </label> 
           </form>
-          
-
           <form>
             <label>
               E-Mail :
     <input type="text" name="Nombre y Apellido" />
             </label>
-           
           </form>
-
-         
-
-
-
           <form>
             <label>
               D.N.I  :

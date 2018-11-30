@@ -92,7 +92,21 @@ public class Server extends ResultFactory {
 
     @Get("/formas")
     public Result getFormas(final String target, final Request baseRequest,
-                                final HttpServletRequest request, final HttpServletResponse response) {
+                            final HttpServletRequest request, final HttpServletResponse response) {
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        List<FormaFront> data =
+                this.formas.recuperarTodos().stream().map(t -> new FormaFront
+                        (t.getClass().getSimpleName(), t.getImg())).collect(Collectors.toList());
+
+
+        return ResultFactory.ok(this.JSONUtils.toJson(data));
+    }
+
+
+    @Get("/product/:type")
+    public Result getProduct(final String target, final Request baseRequest,
+                            final HttpServletRequest request, final HttpServletResponse response) {
         response.setContentType(ContentType.APPLICATION_JSON);
 
         List<FormaFront> data =
