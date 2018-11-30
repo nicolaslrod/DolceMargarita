@@ -6,6 +6,10 @@ import backend.service.ServiceChocolate;
 import backend.service.ServiceForma;
 import backend.service.ServiceTamanio;
 import backend.service.ServiceTipoChocolate;
+import com.mercadopago.MercadoPago;
+import com.mercadopago.resources.Preference;
+import com.mercadopago.resources.datastructures.preference.Item;
+import com.mercadopago.resources.datastructures.preference.Payer;
 import org.uqbar.xtrest.api.Result;
 import org.uqbar.xtrest.api.annotation.Body;
 import org.uqbar.xtrest.api.annotation.Get;
@@ -88,7 +92,21 @@ public class Server extends ResultFactory {
 
     @Get("/formas")
     public Result getFormas(final String target, final Request baseRequest,
-                                final HttpServletRequest request, final HttpServletResponse response) {
+                            final HttpServletRequest request, final HttpServletResponse response) {
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        List<FormaFront> data =
+                this.formas.recuperarTodos().stream().map(t -> new FormaFront
+                        (t.getClass().getSimpleName(), t.getImg())).collect(Collectors.toList());
+
+
+        return ResultFactory.ok(this.JSONUtils.toJson(data));
+    }
+
+
+    @Get("/product/:type")
+    public Result getProduct(final String target, final Request baseRequest,
+                            final HttpServletRequest request, final HttpServletResponse response) {
         response.setContentType(ContentType.APPLICATION_JSON);
 
         List<FormaFront> data =
@@ -116,7 +134,48 @@ public class Server extends ResultFactory {
 
     }
 
+    @Post("/testMP")
+    public Result agregarPedidoMP(@Body final String body, final String target, final Request baseRequest,
+                                final HttpServletRequest request, final HttpServletResponse response) {
 
+        response.setContentType(ContentType.APPLICATION_JSON);
+
+        try {
+
+            MercadoPago.SDK.setClientSecret("uSrYVm8EyPJQQuwjtd49j23VOYQ1UxMW");
+            MercadoPago.SDK.setClientId("134202458393952");
+
+            String id = JSONUtils.getPropertyValue(body,"id");
+            String title = JSONUtils.getPropertyValue(body,"title");
+            Integer quantity = JSONUtils.getPropertyAsInteger(body,"quantity");
+            String currencyId = JSONUtils.getPropertyValue(body,"currencyId");
+            float unitePrice = Float.parseFloat(JSONUtils.getPropertyValue(body,"unitePrice"));
+
+            // Create a preference object
+            Preference preference = new Preference();
+            // Create an item object
+            Item item = new Item();
+            item.setId(id)
+                    .setTitle(title)
+                    .setQuantity(quantity)
+                    .setCurrencyId(currencyId)
+                    .setUnitPrice((float) unitePrice);
+            // Create a payer object
+            Payer payer = new Payer();
+            String email = JSONUtils.getPropertyValue(body,"email");
+            payer.setEmail(email);
+            // Setting preference properties
+            preference.setPayer(payer);
+            preference.appendItem(item);
+            // Save and posting preference
+            preference.save();
+
+            return ResultFactory.ok(JSONUtils.toJson(preference.getSandboxInitPoint()));
+        } catch (Exception e) {
+            return ResultFactory.badRequest(e.getMessage());
+        }
+
+    }
 
     @Override
     public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -134,6 +193,9 @@ public class Server extends ResultFactory {
         }
         {
             handlePost(target, baseRequest, request, response, "/pedidos");
+        }
+        {
+            handlePost(target, baseRequest, request, response, "/testMP");
         }
     }
 
@@ -211,7 +273,7 @@ public class Server extends ResultFactory {
         Matcher matcher =
                 Pattern.compile(endPoint).matcher(target);
 
-        if (request.getMethod().equalsIgnoreCase("Post") && matcher.matches()) {
+        if (request.getMethod().equalsIgnoreCase("Post") && matcher.matches() && endPoint.equals("/pedidos")) {
             // take parameters from request
             String body = readBodyAsString(request);
 
@@ -221,6 +283,22 @@ public class Server extends ResultFactory {
             response.setContentType("application/json");
 
             Result result = agregarPedido(body, target, baseRequest, request, response);
+            result.process(response);
+
+            response.addHeader("Access-Control-Allow-Origin", "*");
+            baseRequest.setHandled(true);
+            return;
+        }
+        if (request.getMethod().equalsIgnoreCase("Post") && matcher.matches() && endPoint.equals("/testMP")) {
+            // take parameters from request
+            String body = readBodyAsString(request);
+
+            // take variables from url
+
+            // set default content type (it can be overridden during next call)
+            response.setContentType("application/json");
+
+            Result result = agregarPedidoMP(body, target, baseRequest, request, response);
             result.process(response);
 
             response.addHeader("Access-Control-Allow-Origin", "*");
