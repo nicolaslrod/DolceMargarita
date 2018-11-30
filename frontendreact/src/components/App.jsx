@@ -11,12 +11,14 @@ import LastView from './LastView.jsx';
 import LastView2 from './LastView2.jsx';
 import MercadoP from './MercadoP.jsx';
 import BuyProduct from './BuyProduct.jsx';
+import CarritoView from './CarritoView';
 
 export default class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
           <Switch>
+            <Route exact path="/carrito" component={CarritoView} />
             <Route exact path="/confirm" render={props => <LastView {...props} />} />
             <Route exact path="/login" render={props => <LastView2 {...props} />} />
             <Route exact path="/product/:type" render={props => <BuyProduct {...props} />} /> 
