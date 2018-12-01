@@ -94,7 +94,7 @@ export default class LastView extends React.Component {
           <input type="number" name="Nombre y Apellido" />
         </form>
             
-        <h4 align="left" className="colorWhite titleFinsh">Finalizar compra</h4>
+        <h4 align="left" className="colorWhite titleFinsh">Finalizar Compra</h4>
         
         <div>
           <button
