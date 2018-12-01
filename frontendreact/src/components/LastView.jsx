@@ -50,7 +50,7 @@ export default class LastView extends React.Component {
   render() {
     return (
       <div>
-        <h4 align="center" className="colorWhite titleFinsh">Datos de cliente</h4>
+        <h4 align="left" className="colorWhite titleFinsh">Datos de cliente</h4>
         <form>
           <label>
             Nombre:
@@ -86,7 +86,7 @@ export default class LastView extends React.Component {
           <input type="number" name="telefono" value={this.state.telefonoCliente} onChange={this.setTelefono} />
         </form>
         
-        <h4 align="center" className="colorWhite titleFinsh">Cantidad de productos</h4>
+        <h4 align="left" className="colorWhite titleFinsh">Cantidad de productos</h4>
         <form>
           <label>
             Cantidad:
@@ -94,7 +94,7 @@ export default class LastView extends React.Component {
           <input type="number" name="Nombre y Apellido" />
         </form>
             
-        <h4 align="center" className="colorWhite titleFinsh">Finalizar compra</h4>
+        <h4 align="left" className="colorWhite titleFinsh">Finalizar compra</h4>
         
         <div>
           <button

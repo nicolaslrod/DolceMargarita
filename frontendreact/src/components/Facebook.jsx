@@ -33,13 +33,16 @@ export default class Facebook extends Component {
           style={{
             width: "400px",
             margin: "auto",
-            background: "#f4f4f4",
+            background: "#f4f4f4f4",
             padding: "20px"
           }}
         >
           <img src={this.state.picture} alt={this.state.name} />
-          <h2>Welcome {this.state.name}</h2>
-          Email: {this.state.email}
+          <h4>Bienvenido a Dolce Margarita</h4>
+          <div> <h6> Nombre: {this.state.name}</h6> </div>
+          <div> <h6> Email: {this.state.email}</h6> </div>
+          <div> <h6> UserID: {this.state.userID}</h6> </div>          
+          
         </div>
       );
     } else {
